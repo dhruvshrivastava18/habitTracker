@@ -23,8 +23,8 @@ struct ContentView: View {
                 .padding(.top, 16)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .overlay(alignment: .bottomTrailing) {
-                    Button {
-                        
+                    NavigationLink {
+                        NewHabitView()
                     } label: {
                         ZStack {
                             Circle()

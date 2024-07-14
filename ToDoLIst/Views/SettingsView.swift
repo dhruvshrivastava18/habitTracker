@@ -58,6 +58,7 @@ struct SettingsView: View {
                 }
             }
             .padding(.horizontal, 16)
+            .padding(.top)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
         .navigationTitle("Settings")
