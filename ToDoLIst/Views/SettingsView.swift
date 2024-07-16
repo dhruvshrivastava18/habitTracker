@@ -9,15 +9,21 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    let theme = ["System", "Light", "Dark"]
+    
     @State private var selectedTheme = "System"
     
-    let startDays = ["Saturday", "Sunday", "Monday"]
+    
     @State private var selectedDay = "Saturday"
     
     @State var sounds = false
     
     @State var showCurrentStreak = false
+    
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Constants.pickerGreen)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+    }
     
     var body: some View {
         VStack {
@@ -26,7 +32,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Theme")
                         Picker("Please choose a color", selection: $selectedTheme) {
-                            ForEach(theme, id: \.self) {
+                            ForEach(Constants.theme, id: \.self) {
                                 Text($0)
                             }
                         }
@@ -35,7 +41,7 @@ struct SettingsView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Week Start On")
                         Picker("Please choose a color", selection: $selectedDay) {
-                            ForEach(startDays, id: \.self) {
+                            ForEach(Constants.startDays, id: \.self) {
                                 Text($0)
                             }
                         }
@@ -43,8 +49,10 @@ struct SettingsView: View {
                     }
                     
                     Toggle("Sounds", isOn: $sounds)
+                        .padding(.trailing, 4)
                     
                     Toggle("Show Current Streak", isOn: $showCurrentStreak)
+                        .padding(.trailing, 4)
                     
                     VStack(spacing: 20) {
                         SettingsOptions(image: Image(systemName: "star.fill"), text: "Rate The App")

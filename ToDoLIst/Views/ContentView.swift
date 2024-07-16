@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var selection = "Today"
-    var arr = ["Today", "Weekly", "Overall"]
+    
     
     var body: some View {
         NavigationView {
@@ -29,7 +29,7 @@ struct ContentView: View {
                         ZStack {
                             Circle()
                                 .frame(width: 50)
-                                .foregroundColor(.green)
+                                .foregroundColor(Constants.selectedTabColor)
                             Image(systemName: "plus")
                                 .foregroundColor(.white)
                         }
@@ -47,7 +47,7 @@ struct ContentView: View {
                             .renderingMode(.template)
                             .resizable()
                             .frame(width: 30)
-                            .foregroundColor(.green)
+                            .foregroundColor(Constants.settingsButtonColor)
                     }
                 }
             })
@@ -56,14 +56,14 @@ struct ContentView: View {
     
     var TopTabView: some View {
         HStack(spacing: 16) {
-            ForEach(arr, id: \.self) { text in
+            ForEach(Constants.tabs, id: \.self) { text in
                 if selection == text {
                     Text(text)
                         .padding(8)
                         .padding(.horizontal, 4)
-                        .background(.green)
+                        .background(Constants.selectedTabColor)
                         .clipShape(.capsule)
-                        .foregroundColor(.white)
+                        .foregroundColor(Constants.AppGreen)
                 } else {
                     Button {
                         withAnimation(.linear) {
@@ -74,6 +74,7 @@ struct ContentView: View {
                             .padding(8)
                             .padding(.horizontal, 4)
                             .foregroundColor(.white)
+                            .opacity(0.6)
                     }
                 }
             }
