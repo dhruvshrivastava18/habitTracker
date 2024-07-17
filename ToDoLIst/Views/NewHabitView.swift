@@ -20,8 +20,8 @@ struct NewHabitView: View {
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Constants.pickerGreen)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.AppBlack)], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.AppWhite)], for: .normal)
     }
     
     var body: some View {
@@ -91,12 +91,12 @@ struct NewHabitView: View {
                                 } label: {
                                     ZStack {
                                         Rectangle()
-                                            .foregroundColor(Color(hex: "161b17"))
+                                            .foregroundColor(Constants.grayBackground)
                                             .frame(width: 24, height: 24)
                                             .cornerRadius(4)
                                             .cornerRadius(6, corners: [.topLeft, .bottomLeft])
                                         Image(systemName: "minus")
-                                            .foregroundColor(Color(hex: "81ba83"))
+                                            .foregroundColor(Constants.pickerGreen)
                                     }
                                 }
                                 
@@ -115,11 +115,11 @@ struct NewHabitView: View {
                                 } label: {
                                     ZStack {
                                         Rectangle()
-                                            .foregroundColor(Color(hex: "161b17"))
+                                            .foregroundColor(Constants.grayBackground)
                                             .frame(width: 24, height: 24)
                                             .cornerRadius(6, corners: [.topRight, .bottomRight])
                                         Image(systemName: "plus")
-                                            .foregroundColor(Constants.AppGreen)
+                                            .foregroundColor(Constants.pickerGreen)
                                     }
                                 }
                             }
@@ -217,7 +217,7 @@ struct DayTabView: View {
             }
         } label: {
             Text(day)
-                .foregroundStyle(.white)
+                .foregroundColor(Constants.AppWhite)
                 .font(.caption)
                 .frame(width: 50, height: 20)
                 .background(isSelected ? Constants.selectedTabColor : Constants.grayBackground)
@@ -243,7 +243,7 @@ struct MonthTabView: View {
                     .foregroundColor(isSelected ? Constants.selectedTabColor : .clear)
                 Text("\(date)")
                     .font(.caption)
-                    .foregroundStyle(.white)
+                    .foregroundColor(Constants.AppWhite)
             }
         }
     }

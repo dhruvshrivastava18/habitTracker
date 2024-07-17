@@ -21,8 +21,8 @@ struct SettingsView: View {
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Constants.pickerGreen)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.AppBlack)], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.AppWhite)], for: .normal)
     }
     
     var body: some View {
@@ -87,7 +87,7 @@ struct SettingsOptions: View {
                     Rectangle()
                         .frame(width: 30, height: 30)
                         .cornerRadius(12)
-                        .foregroundColor(Color(uiColor: .darkGray))
+                        .foregroundColor(Color(uiColor: .systemGray))
                     image
                         .renderingMode(.template)
                         .resizable()

@@ -10,6 +10,7 @@
 		7B0A5DDE2C42F0AE00525BBD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */; };
 		7B0A5DE12C43E0EF00525BBD /* NewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */; };
 		7B64231B2C46BA360046FB18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B64231A2C46BA360046FB18 /* Constants.swift */; };
+		7BA988072C482BEB006AE7CD /* DailyListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */; };
 		7BABD46A2C42867100B69EB8 /* ToDoLIstApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4692C42867100B69EB8 /* ToDoLIstApp.swift */; };
 		7BABD46C2C42867100B69EB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD46B2C42867100B69EB8 /* ContentView.swift */; };
 		7BABD46E2C42867200B69EB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BABD46D2C42867200B69EB8 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitView.swift; sourceTree = "<group>"; };
 		7B64231A2C46BA360046FB18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyListTrackerItem.swift; sourceTree = "<group>"; };
 		7BABD4662C42867100B69EB8 /* ToDoLIst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoLIst.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BABD4692C42867100B69EB8 /* ToDoLIstApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoLIstApp.swift; sourceTree = "<group>"; };
 		7BABD46B2C42867100B69EB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				7BABD46B2C42867100B69EB8 /* ContentView.swift */,
 				7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */,
 				7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */,
+				7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				7BABD46C2C42867100B69EB8 /* ContentView.swift in Sources */,
 				7B0A5DE12C43E0EF00525BBD /* NewHabitView.swift in Sources */,
 				7BABD46A2C42867100B69EB8 /* ToDoLIstApp.swift in Sources */,
+				7BA988072C482BEB006AE7CD /* DailyListTrackerItem.swift in Sources */,
 				7B64231B2C46BA360046FB18 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

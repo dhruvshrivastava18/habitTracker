@@ -17,7 +17,7 @@ struct ContentView: View {
             VStack() {
                 TopTabView
                 ScrollView {
-                    DailyListTracker(image: Image(.dumbell), text: "Leetcode")
+                    DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
@@ -29,9 +29,9 @@ struct ContentView: View {
                         ZStack {
                             Circle()
                                 .frame(width: 50)
-                                .foregroundColor(Constants.selectedTabColor)
+                                .foregroundColor(Constants.settingsButtonColor)
                             Image(systemName: "plus")
-                                .foregroundColor(.white)
+                                .foregroundColor(Constants.AppWhite)
                         }
                         .padding()
                     }
@@ -63,7 +63,7 @@ struct ContentView: View {
                         .padding(.horizontal, 4)
                         .background(Constants.selectedTabColor)
                         .clipShape(.capsule)
-                        .foregroundColor(Constants.AppGreen)
+                        .foregroundColor(Constants.pickerGreen)
                 } else {
                     Button {
                         withAnimation(.linear) {
@@ -73,7 +73,7 @@ struct ContentView: View {
                         Text(text)
                             .padding(8)
                             .padding(.horizontal, 4)
-                            .foregroundColor(.white)
+                            .foregroundColor(Constants.AppWhite)
                             .opacity(0.6)
                     }
                 }
@@ -84,49 +84,7 @@ struct ContentView: View {
     }
 }
 
-struct DailyListTracker: View {
-    var image: Image
-    var text: String
-    
-    var body: some View {
-        Button {
-            
-        } label: {
-            HStack {
-                HStack {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.purple)
-                            .frame(width: 40, height: 40)
-                            .cornerRadius(12)
-                        image
-                            .resizable()
-                            .frame(width: 20, height:  20)
-                    }
-                    Text(text)
-                        .foregroundColor(.white)
-                }
-                Spacer()
-                VStack {
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
-                    Text("0/2")
-                        .font(.caption)
-                        .foregroundColor(.white)
-                }
-            }
-            .padding(16)
-            .background {
-                Rectangle()
-                    .fill(.brown)
-                    .opacity(0.1)
-            }
-            .cornerRadius(12)
-        }
-    }
-}
+
 
 #Preview {
     ContentView()
