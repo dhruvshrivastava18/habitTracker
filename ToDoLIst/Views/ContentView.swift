@@ -11,13 +11,16 @@ struct ContentView: View {
     
     @State var selection = "Today"
     
-    
     var body: some View {
         NavigationView {
-            VStack() {
+            VStack {
                 TopTabView
                 ScrollView {
-                    DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
+                    if selection == Constants.tabs[0] {
+                        DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
+                    } else if selection == Constants.tabs[1] {
+                        WeeklyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3, frequency: "Everyday")
+                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 16)

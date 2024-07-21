@@ -9,14 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    
     @State private var selectedTheme = "System"
-    
-    
     @State private var selectedDay = "Saturday"
-    
     @State var sounds = false
-    
     @State var showCurrentStreak = false
     
     init() {
@@ -28,7 +23,7 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: 20) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Theme")
                         Picker("Please choose a color", selection: $selectedTheme) {
@@ -87,7 +82,7 @@ struct SettingsOptions: View {
                     Rectangle()
                         .frame(width: 30, height: 30)
                         .cornerRadius(12)
-                        .foregroundColor(Color(uiColor: .systemGray))
+                        .foregroundColor(Constants.grayBackground)
                     image
                         .renderingMode(.template)
                         .resizable()

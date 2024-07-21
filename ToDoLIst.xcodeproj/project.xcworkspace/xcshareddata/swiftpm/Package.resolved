@@ -1,0 +1,51 @@
+{
+  "originHash" : "00d1a082c134a924b4f20aaa195029403fbb41c71f1e061f3f9e2a22074ac474",
+  "pins" : [
+    {
+      "identity" : "confettiswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simibac/ConfettiSwiftUI",
+      "state" : {
+        "revision" : "f45961f97bbae6fff6e2e64546fea0189425ad92",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "fastis?tab=readme-ov-file#swiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simla-tech/Fastis?tab=readme-ov-file#swiftui",
+      "state" : {
+        "revision" : "1f33807dea8152665415e2ecc78b432eedf59ba6",
+        "version" : "3.2.0"
+      }
+    },
+    {
+      "identity" : "jtapplecalendar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/patchthecode/JTAppleCalendar",
+      "state" : {
+        "revision" : "718f0ab68ba0fcd2bc134f6e9d30edc1b9b038e1",
+        "version" : "8.0.5"
+      }
+    },
+    {
+      "identity" : "prettycards",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simla-tech/PrettyCards",
+      "state" : {
+        "revision" : "3115edbd79c66090729dfb261dc4fbf7c6df0ac1",
+        "version" : "1.0.7"
+      }
+    },
+    {
+      "identity" : "swiftui-contributionchart",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/VIkill33/SwiftUI-ContributionChart",
+      "state" : {
+        "revision" : "8091d51a4aaa06028cd922d4ac89163e754b37d9",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 3
+}

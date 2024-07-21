@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		7B0A5DDE2C42F0AE00525BBD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */; };
 		7B0A5DE12C43E0EF00525BBD /* NewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */; };
+		7B24D2A62C4BFC6A008DC16A /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7B24D2A52C4BFC6A008DC16A /* ConfettiSwiftUI */; };
+		7B24D2A92C4C2663008DC16A /* ContributionChart in Frameworks */ = {isa = PBXBuildFile; productRef = 7B24D2A82C4C2663008DC16A /* ContributionChart */; };
+		7B24D2AB2C4C269E008DC16A /* OverAllListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */; };
+		7B24D2AE2C4D082D008DC16A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B24D2AD2C4D082D008DC16A /* InfoView.swift */; };
+		7B24D2B12C4D0A02008DC16A /* Fastis in Frameworks */ = {isa = PBXBuildFile; productRef = 7B24D2B02C4D0A02008DC16A /* Fastis */; };
 		7B64231B2C46BA360046FB18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B64231A2C46BA360046FB18 /* Constants.swift */; };
 		7BA988072C482BEB006AE7CD /* DailyListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */; };
 		7BABD46A2C42867100B69EB8 /* ToDoLIstApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4692C42867100B69EB8 /* ToDoLIstApp.swift */; };
@@ -18,6 +23,7 @@
 		7BABD47C2C42867300B69EB8 /* ToDoLIstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD47B2C42867300B69EB8 /* ToDoLIstTests.swift */; };
 		7BABD4862C42867300B69EB8 /* ToDoLIstUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4852C42867300B69EB8 /* ToDoLIstUITests.swift */; };
 		7BABD4882C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4872C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift */; };
+		7BC72CB42C4AC32E00E272A0 /* WeeklyListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC72CB32C4AC32E00E272A0 /* WeeklyListTrackerItem.swift */; };
 		7BE178B42C4567FF00C38CC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE178B32C4567FF00C38CC5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +47,8 @@
 /* Begin PBXFileReference section */
 		7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitView.swift; sourceTree = "<group>"; };
+		7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllListTrackerItem.swift; sourceTree = "<group>"; };
+		7B24D2AD2C4D082D008DC16A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		7B64231A2C46BA360046FB18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyListTrackerItem.swift; sourceTree = "<group>"; };
 		7BABD4662C42867100B69EB8 /* ToDoLIst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoLIst.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +62,7 @@
 		7BABD4812C42867300B69EB8 /* ToDoLIstUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoLIstUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BABD4852C42867300B69EB8 /* ToDoLIstUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoLIstUITests.swift; sourceTree = "<group>"; };
 		7BABD4872C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoLIstUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7BC72CB32C4AC32E00E272A0 /* WeeklyListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyListTrackerItem.swift; sourceTree = "<group>"; };
 		7BE178B32C4567FF00C38CC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B24D2A62C4BFC6A008DC16A /* ConfettiSwiftUI in Frameworks */,
+				7B24D2B12C4D0A02008DC16A /* Fastis in Frameworks */,
+				7B24D2A92C4C2663008DC16A /* ContributionChart in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,9 +100,20 @@
 				7BABD46B2C42867100B69EB8 /* ContentView.swift */,
 				7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */,
 				7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */,
-				7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */,
+				7B24D2AD2C4D082D008DC16A /* InfoView.swift */,
+				7B24D2AC2C4D080C008DC16A /* ListTrackerItems */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7B24D2AC2C4D080C008DC16A /* ListTrackerItems */ = {
+			isa = PBXGroup;
+			children = (
+				7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */,
+				7BC72CB32C4AC32E00E272A0 /* WeeklyListTrackerItem.swift */,
+				7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */,
+			);
+			path = ListTrackerItems;
 			sourceTree = "<group>";
 		};
 		7B6423192C46BA230046FB18 /* Constants */ = {
@@ -184,6 +207,11 @@
 			dependencies = (
 			);
 			name = ToDoLIst;
+			packageProductDependencies = (
+				7B24D2A52C4BFC6A008DC16A /* ConfettiSwiftUI */,
+				7B24D2A82C4C2663008DC16A /* ContributionChart */,
+				7B24D2B02C4D0A02008DC16A /* Fastis */,
+			);
 			productName = ToDoLIst;
 			productReference = 7BABD4662C42867100B69EB8 /* ToDoLIst.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +284,11 @@
 				Base,
 			);
 			mainGroup = 7BABD45D2C42867100B69EB8;
+			packageReferences = (
+				7B24D2A42C4BFC6A008DC16A /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				7B24D2A72C4C2663008DC16A /* XCRemoteSwiftPackageReference "SwiftUI-ContributionChart" */,
+				7B24D2AF2C4D0A02008DC16A /* XCRemoteSwiftPackageReference "Fastis" */,
+			);
 			productRefGroup = 7BABD4672C42867100B69EB8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -301,9 +334,12 @@
 				7BE178B42C4567FF00C38CC5 /* Extensions.swift in Sources */,
 				7B0A5DDE2C42F0AE00525BBD /* SettingsView.swift in Sources */,
 				7BABD46C2C42867100B69EB8 /* ContentView.swift in Sources */,
+				7B24D2AB2C4C269E008DC16A /* OverAllListTrackerItem.swift in Sources */,
 				7B0A5DE12C43E0EF00525BBD /* NewHabitView.swift in Sources */,
 				7BABD46A2C42867100B69EB8 /* ToDoLIstApp.swift in Sources */,
 				7BA988072C482BEB006AE7CD /* DailyListTrackerItem.swift in Sources */,
+				7BC72CB42C4AC32E00E272A0 /* WeeklyListTrackerItem.swift in Sources */,
+				7B24D2AE2C4D082D008DC16A /* InfoView.swift in Sources */,
 				7B64231B2C46BA360046FB18 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,6 +689,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7B24D2A42C4BFC6A008DC16A /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		7B24D2A72C4C2663008DC16A /* XCRemoteSwiftPackageReference "SwiftUI-ContributionChart" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VIkill33/SwiftUI-ContributionChart";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		7B24D2AF2C4D0A02008DC16A /* XCRemoteSwiftPackageReference "Fastis" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simla-tech/Fastis?tab=readme-ov-file#swiftui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7B24D2A52C4BFC6A008DC16A /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B24D2A42C4BFC6A008DC16A /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		7B24D2A82C4C2663008DC16A /* ContributionChart */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B24D2A72C4C2663008DC16A /* XCRemoteSwiftPackageReference "SwiftUI-ContributionChart" */;
+			productName = ContributionChart;
+		};
+		7B24D2B02C4D0A02008DC16A /* Fastis */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B24D2AF2C4D0A02008DC16A /* XCRemoteSwiftPackageReference "Fastis" */;
+			productName = Fastis;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7BABD45E2C42867100B69EB8 /* Project object */;
 }

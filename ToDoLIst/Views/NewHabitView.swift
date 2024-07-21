@@ -10,6 +10,7 @@ import SwiftUI
 struct NewHabitView: View {
     
     @State var selectedColor = Color(hex: "025315")
+    @State var selectedImage = Constants.images[0]
     
     @State private var selectedFrequency = "Daily"
     @State var habitName = ""
@@ -28,7 +29,7 @@ struct NewHabitView: View {
 //        NavigationView {
             VStack {
                 ScrollView {
-                    VStack(spacing: 16) {
+                    VStack(spacing: 20) {
                     
                         // Habit Name
                         TextField("Habit Name", text: $habitName)
@@ -57,7 +58,7 @@ struct NewHabitView: View {
                         // Color Selection
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Color")
-                            LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())]) {
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
                                 ForEach(Constants.color, id: \.self) { color in
                                     ZStack {
                                         Button {
@@ -69,6 +70,41 @@ struct NewHabitView: View {
                                         }
                                         if selectedColor == color {
                                             Image(systemName: "checkmark")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Icon")
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]) {
+                                ForEach(Constants.images) { image in
+                                    Button {
+                                        selectedImage = image
+                                    } label: {
+                                        ZStack {
+                                            if selectedImage == image {
+                                                Rectangle()
+                                                    .fill(Constants.grayBackground)
+                                                    .frame(width: 35, height: 35)
+                                                    .cornerRadius(4)
+                                                    .overlay(
+                                                        
+                                                        RoundedRectangle(cornerRadius: 4)
+                                                            .stroke(.green, lineWidth: 1)
+                                                        
+                                                    )
+                                            } else {
+                                                Rectangle()
+                                                    .fill(Constants.grayBackground)
+                                                    .frame(width: 35, height: 35)
+                                                    .cornerRadius(4)
+                                            }
+                                            
+                                            image.image
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
                                         }
                                     }
                                 }
@@ -126,6 +162,7 @@ struct NewHabitView: View {
                         }
                         
                     }
+                    .padding(.top)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             }
@@ -140,10 +177,14 @@ struct NewHabitView: View {
                     .buttonStyle(.plain)
                     .disabled(true)
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    
+                }
             })
             .onAppear(perform: {
                 selectedDays = Constants.days
             })
+            .navigationBarBackButtonHidden()
             .navigationTitle("New Habit")
             .navigationBarTitleDisplayMode(.inline)
             .padding(.horizontal, 16)
@@ -248,7 +289,6 @@ struct MonthTabView: View {
         }
     }
 }
-
 
 #Preview {
     NewHabitView()

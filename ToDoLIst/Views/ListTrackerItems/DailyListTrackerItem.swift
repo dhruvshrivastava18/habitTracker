@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct DailyListTrackerItem: View {
     @State var int = 2

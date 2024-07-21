@@ -108,3 +108,16 @@ extension Color {
         }
         #endif
 }
+
+struct HashableImage: Identifiable, Hashable {
+    let id = UUID() // Unique identifier for each image
+    let image: Image
+
+    static func == (lhs: HashableImage, rhs: HashableImage) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

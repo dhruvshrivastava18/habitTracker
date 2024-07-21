@@ -31,13 +31,31 @@ struct Constants {
         Color(light: Color(hex: "4c95a7"), dark: Color(hex: "054d62")),
         Color(light: Color(hex: "8788ff"), dark: Color(hex: "4142b9")),
         Color(light: Color(hex: "728cc2"), dark: Color(hex: "2b467d")),
-        Color(light: Color(hex: "bd7488"), dark: Color(hex: "802a3f")),
-        Color(light: Color(hex: "bd7488"), dark: Color(hex: "9677b3")),
+        Color(light: Color(hex: "be7388"), dark: Color(hex: "802a3f")),
+        Color(light: Color(hex: "debefa"), dark: Color(hex: "9677b3")),
         Color(light: Color(hex: "ce6163"), dark: Color(hex: "7b2018")),
-        Color(light: Color(hex: "fea271"), dark: Color(hex: "b85a2e")),
+        Color(light: Color(hex: "fea273"), dark: Color(hex: "b85a2e")),
         Color(light: Color(hex: "ffb77b"), dark: Color(hex: "b77137")),
-        Color(light: Color(hex: "ffb77b"), dark: Color(hex: "5d21b7")),
+        Color(light: Color(hex: "a567ff"), dark: Color(hex: "5d21b7")),
         Color(light: Color(hex: "ff4d4c"), dark: Color(hex: "ae0c06"))
+    ]
+    static let images: [HashableImage] = [
+        HashableImage(image: Image(.apple)),
+        HashableImage(image: Image(.trophy)),
+        HashableImage(image: Image(.dumbell)),
+        HashableImage(image: Image(.cycle)),
+        HashableImage(image: Image(.flame)),
+        HashableImage(image: Image(.swimmingPool)),
+        HashableImage(image: Image(.rollerSkate)),
+        HashableImage(image: Image(.scale)),
+        HashableImage(image: Image(.scoreBoard)),
+        HashableImage(image: Image(.basketBallJersey)),
+        HashableImage(image: Image(.sleep)),
+        HashableImage(image: Image(.runningShoe)),
+        HashableImage(image: Image(.stopwatch)),
+        HashableImage(image: Image(.smartwatch)),
+        HashableImage(image: Image(.training)),
+        HashableImage(image: Image(.whistle))
     ]
     static let frequency = ["Daily", "Weekly", "Monthly"]
     static let tabs = ["Today", "Weekly", "Overall"]
