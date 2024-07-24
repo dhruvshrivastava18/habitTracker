@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    
+    @Environment(\.modelContext) private var context
+    
+    @Query private var items: [Modal]
     
     @State var selection = "Today"
     
@@ -17,9 +22,13 @@ struct ContentView: View {
                 TopTabView
                 ScrollView {
                     if selection == Constants.tabs[0] {
-                        DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
+                        ForEach(items) { item in
+                            DailyListTrackerItem(modal: item)
+                        }
                     } else if selection == Constants.tabs[1] {
-                        WeeklyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3, frequency: "Everyday")
+                        ForEach(items) { item in
+                            WeeklyListTrackerItem(modal: item)
+                        }
                     }
                 }
                 .padding(.horizontal, 16)
@@ -39,6 +48,19 @@ struct ContentView: View {
                         .padding()
                     }
                 }
+                
+//                List {
+//                    ForEach(items) { item in
+//                        Text(item.name)
+//                            .foregroundStyle(.white)
+//                    }
+//                    .onDelete { indexes in
+//                        for index in indexes {
+//                            deleteItem(items[index])
+//                        }
+//                    }
+//                }
+                
             }
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
@@ -85,11 +107,26 @@ struct ContentView: View {
         }
         .padding([.leading, .top])
     }
+    
+//    private func addItem() {
+//        let item = Modal(name: "Pehla")
+//        context.insert(item)
+//    }
+//    
+//    private func deleteItem(_ item: Modal) {
+//        context.delete(item)
+//    }
+//    
+//    private func updateItem(_ item: Modal) {
+//        item.name = "Updated Data"
+//        
+//        try? context.save()
+//    }
 }
 
 
 
 #Preview {
     ContentView()
-//    DailyListTracker(image: Image(.dumbell), text: "Text")
+ 
 }

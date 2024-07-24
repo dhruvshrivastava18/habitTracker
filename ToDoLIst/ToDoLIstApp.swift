@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ToDoLIstApp: App {
@@ -13,5 +14,6 @@ struct ToDoLIstApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Modal.self )
     }
 }

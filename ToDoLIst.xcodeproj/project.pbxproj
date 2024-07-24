@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B0A5DDE2C42F0AE00525BBD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */; };
 		7B0A5DE12C43E0EF00525BBD /* NewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */; };
+		7B12BE2F2C4EC1A200BA8E09 /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B12BE2E2C4EC1A200BA8E09 /* Modal.swift */; };
 		7B24D2A62C4BFC6A008DC16A /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7B24D2A52C4BFC6A008DC16A /* ConfettiSwiftUI */; };
 		7B24D2A92C4C2663008DC16A /* ContributionChart in Frameworks */ = {isa = PBXBuildFile; productRef = 7B24D2A82C4C2663008DC16A /* ContributionChart */; };
 		7B24D2AB2C4C269E008DC16A /* OverAllListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		7B0A5DDD2C42F0AE00525BBD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7B0A5DE02C43E0EF00525BBD /* NewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitView.swift; sourceTree = "<group>"; };
+		7B12BE2E2C4EC1A200BA8E09 /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllListTrackerItem.swift; sourceTree = "<group>"; };
 		7B24D2AD2C4D082D008DC16A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		7B64231A2C46BA360046FB18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				7BABD46D2C42867200B69EB8 /* Assets.xcassets */,
 				7BABD46F2C42867200B69EB8 /* ToDoLIst.entitlements */,
 				7BABD4702C42867200B69EB8 /* Preview Content */,
+				7B12BE2E2C4EC1A200BA8E09 /* Modal.swift */,
 			);
 			path = ToDoLIst;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B12BE2F2C4EC1A200BA8E09 /* Modal.swift in Sources */,
 				7BE178B42C4567FF00C38CC5 /* Extensions.swift in Sources */,
 				7B0A5DDE2C42F0AE00525BBD /* SettingsView.swift in Sources */,
 				7BABD46C2C42867100B69EB8 /* ContentView.swift in Sources */,

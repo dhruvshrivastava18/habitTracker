@@ -10,12 +10,7 @@ import ConfettiSwiftUI
 
 struct DailyListTrackerItem: View {
     @State var int = 2
-    
-    var image: Image
-    var text: String
-    var total: Int
-    var color: Color
-    var streak: Int
+    let modal: Modal
     
     var body: some View {
         HStack {
@@ -25,17 +20,17 @@ struct DailyListTrackerItem: View {
                         .foregroundColor(.purple)
                         .frame(width: 40, height: 40)
                         .cornerRadius(12)
-                    image
+                    Constants.images[modal.image].image
                         .resizable()
                         .frame(width: 20, height:  20)
                 }
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(text)
+                    Text(modal.name)
                         .foregroundColor(Constants.AppWhite)
                     HStack(spacing: 0) {
                         Text("🔥")
                             .font(.caption2)
-                        Text("\(streak) Days")
+                        Text("\(modal.streak) Days")
                             .font(.caption2)
                     }
                 }
@@ -43,13 +38,13 @@ struct DailyListTrackerItem: View {
             Spacer()
             VStack {
                 Button {
-                    if int < total {
+                    if int < modal.dailyTotal {
                         int = int + 1
                     } else {
                         int = 0
                     }
                 } label: {
-                    if int == total {
+                    if int == modal.dailyTotal {
                         Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -60,26 +55,26 @@ struct DailyListTrackerItem: View {
                         Image(systemName: "plus.circle")
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(color.opacity(0.6))
+                            .foregroundColor(Constants.color[modal.color].opacity(0.6))
                     }
                 }
-                if int != total {
-                    Text("\(int)/\(total)")
+                if int != modal.dailyTotal {
+                    Text("\(int)/\(modal.dailyTotal)")
                         .font(.caption)
-                        .foregroundColor(color.opacity(0.6))
+                        .foregroundColor(Constants.color[modal.color].opacity(0.6))
                 }
             }
         }
         .padding(16)
         .background {
             Rectangle()
-                .fill(color)
+                .fill(Constants.color[modal.color])
                 .opacity(0.1)
         }
         .cornerRadius(12)
     }
 }
 
-#Preview {
-    DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
-}
+//#Preview {
+//    DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
+//}

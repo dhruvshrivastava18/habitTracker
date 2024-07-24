@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NewHabitView: View {
     
+    @Environment(\.modelContext) private var context
+    
     @State var selectedColor = Color(hex: "025315")
     @State var selectedImage = Constants.images[0]
     

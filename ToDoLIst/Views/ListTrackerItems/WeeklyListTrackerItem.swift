@@ -11,12 +11,13 @@ struct WeeklyListTrackerItem: View {
     
     @State var int = 0
     
-    var image: Image
-    var text: String
-    var total: Int
-    var color: Color
-    var streak: Int
-    var frequency: String
+//    var image: Image
+//    var text: String
+//    var total: Int
+//    var color: Color
+//    var streak: Int
+//    var frequency: String
+    var modal: Modal
     
     var body: some View {
         VStack {
@@ -27,29 +28,29 @@ struct WeeklyListTrackerItem: View {
                             .foregroundColor(.purple)
                             .frame(width: 40, height: 40)
                             .cornerRadius(12)
-                        image
+                        Constants.images[modal.image].image
                             .resizable()
                             .frame(width: 20, height:  20)
                     }
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(text)
+                        Text(modal.name)
                             .foregroundColor(Constants.AppWhite)
                         HStack(spacing: 0) {
                             Text("🔥")
                                 .font(.caption2)
-                            Text("\(streak) Days")
+                            Text("\(modal.streak) Days")
                                 .font(.caption2)
                         }
                     }
                 }
                 Spacer()
-                Text(frequency)
+                Text(modal.frequency)
                     .font(.caption)
             }
 
             HStack(spacing: 2) {
                 ForEach(Constants.days, id: \.self) { day in
-                    WeeklyListItem(int: int, day: day, total: total, color: color)
+                    WeeklyListItem(int: int, day: day, total: modal.dailyTotal, color: Constants.color[modal.color])
                 }
             }
             .padding(.top)
@@ -57,7 +58,7 @@ struct WeeklyListTrackerItem: View {
         .padding(16)
         .background {
             Rectangle()
-                .fill(color)
+                .fill(Constants.color[modal.color])
                 .opacity(0.1)
         }
         .cornerRadius(12)
@@ -108,6 +109,6 @@ struct WeeklyListItem: View {
     }
 }
 
-#Preview {
-    WeeklyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3, frequency: "Everyday")
-}
+//#Preview {
+//    WeeklyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3, frequency: "Everyday")
+//}
