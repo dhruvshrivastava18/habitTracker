@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ContributionChart
 
 struct OverAllListTrackerItem: View {
     @State var int = 2
@@ -73,8 +72,8 @@ struct OverAllListTrackerItem: View {
                 }
             }
          
-                    ContributionChartView(data: data, rows: rows, columns: columns, targetValue: 0.5)
-                                        .frame(height: 200)
+//                    ContributionChartView(data: data, rows: rows, columns: columns, targetValue: 0.5)
+//                                        .frame(height: 200)
                 
         }
         .padding(16)

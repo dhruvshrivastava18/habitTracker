@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import CoreData
 
 struct ContentView: View {
     
@@ -36,7 +37,7 @@ struct ContentView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .overlay(alignment: .bottomTrailing) {
                     NavigationLink {
-                        NewHabitView()
+                        NewHabitView(modal: Modal(name: "", color: 0, image: 0, dailyTotal: 0, streak: 0, frequency: "", dailyData: [:]), isEdit: false)
                     } label: {
                         ZStack {
                             Circle()
@@ -78,7 +79,7 @@ struct ContentView: View {
             })
         }
     }
-    
+  
     var TopTabView: some View {
         HStack(spacing: 16) {
             ForEach(Constants.tabs, id: \.self) { text in

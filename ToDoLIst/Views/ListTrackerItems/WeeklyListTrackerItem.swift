@@ -50,7 +50,7 @@ struct WeeklyListTrackerItem: View {
 
             HStack(spacing: 2) {
                 ForEach(Constants.days, id: \.self) { day in
-                    WeeklyListItem(int: int, day: day, total: modal.dailyTotal, color: Constants.color[modal.color])
+                    WeeklyListItem(int: int, day: day, total: modal.dailyTotal, color: Constants.color[modal.paletteColor])
                 }
             }
             .padding(.top)
@@ -58,7 +58,7 @@ struct WeeklyListTrackerItem: View {
         .padding(16)
         .background {
             Rectangle()
-                .fill(Constants.color[modal.color])
+                .fill(Constants.color[modal.paletteColor])
                 .opacity(0.1)
         }
         .cornerRadius(12)

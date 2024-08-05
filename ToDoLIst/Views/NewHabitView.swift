@@ -11,9 +11,13 @@ struct NewHabitView: View {
     
     @Environment(\.modelContext) private var context
     
-    @State var selectedColor = Color(hex: "025315")
-    @State var selectedImage = Constants.images[0]
+    @Environment(\.dismiss) private var dismiss
     
+    @State var modal: Modal
+    
+    @State var selectedColor = Constants.color[0]
+    @State var selectedImage = Constants.images[0]
+//    
     @State private var selectedFrequency = "Daily"
     @State var habitName = ""
     @State var reminder = false 
@@ -21,10 +25,16 @@ struct NewHabitView: View {
     @State var selectedDays: [String] = []
     @State var selectedDates: [String] = []
     
-    init() {
+    var isEdit = false
+    
+    init(modal: Modal, isEdit: Bool) {
+        
+        self.modal = modal
+        self.isEdit = isEdit
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Constants.pickerGreen)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.AppBlack)], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Constants.AppWhite)], for: .normal)
+        
     }
     
     var body: some View {
@@ -171,26 +181,64 @@ struct NewHabitView: View {
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        
+//                        modal = Modal(name: habitName, color: getColorInt(), image: getImageInt(), dailyTotal: int, streak: 0, frequency: "", dailyData: [:])
+                        modal.name = habitName
+                        modal.paletteColor = getColorInt()
+                        modal.image = getImageInt()
+                        modal.dailyTotal = int
+                        if isEdit {
+                            try? context.save()
+                        } else {
+                            context.insert(modal)
+                        }
+                        dismiss()
                     } label: {
                         Text("Save")
                             .foregroundColor(Constants.AppGreen)
                     }
                     .buttonStyle(.plain)
-                    .disabled(true)
+                    .disabled(modal.name.isEmpty)
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Constants.AppWhite)
+                    }
                 }
             })
             .onAppear(perform: {
                 selectedDays = Constants.days
+                print(modal.name)
+                if isEdit {
+                    habitName = modal.name
+                    selectedColor = Constants.color[modal.paletteColor]
+                    selectedImage = Constants.images[modal.image]
+                    int = modal.dailyTotal
+                }
             })
             .navigationBarBackButtonHidden()
             .navigationTitle("New Habit")
             .navigationBarTitleDisplayMode(.inline)
             .padding(.horizontal, 16)
 //        }
+    }
+    
+    private func getColorInt() -> Int {
+        if let index = Constants.color.firstIndex(of: selectedColor) {
+            return index
+        } else {
+            return 0
+        }
+    }
+    
+    private func getImageInt() -> Int {
+        if let index = Constants.images.firstIndex(of: selectedImage) {
+            return index
+        } else {
+            return 0
+        }
     }
     
     
@@ -293,6 +341,6 @@ struct MonthTabView: View {
 }
 
 #Preview {
-    NewHabitView()
+    NewHabitView(modal: Modal(name: "", color: 0, image: 0, dailyTotal: 0, streak: 0, frequency: "", dailyData: [:]), isEdit: false)
 }
 
