@@ -197,7 +197,7 @@ struct NewHabitView: View {
                             .foregroundColor(Constants.AppGreen)
                     }
                     .buttonStyle(.plain)
-                    .disabled(modal.name.isEmpty)
+                    .disabled(habitName.isEmpty)
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
