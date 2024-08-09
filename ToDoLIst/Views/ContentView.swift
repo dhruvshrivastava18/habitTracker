@@ -30,6 +30,10 @@ struct ContentView: View {
                         ForEach(items) { item in
                             WeeklyListTrackerItem(modal: item)
                         }
+                    } else {
+                        ForEach(items) { item in
+                            OverAllListTrackerItem(modal: item)
+                        }
                     }
                 }
                 .padding(.horizontal, 16)

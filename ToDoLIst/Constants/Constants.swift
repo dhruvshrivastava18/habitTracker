@@ -59,7 +59,18 @@ struct Constants {
     ]
     static let frequency = ["Daily", "Weekly", "Monthly"]
     static let tabs = ["Today", "Weekly", "Overall"]
-    static let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    static var days: [String] {
+        if UserDefaults.standard.string(forKey: startDay) == "Saturday" {
+            return ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+        } else if UserDefaults.standard.string(forKey: startDay) == "Sunday" {
+            return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        } else {
+            return ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        }
+    }
     static let theme = ["System", "Light", "Dark"]
     static let startDays = ["Saturday", "Sunday", "Monday"]
+    
+    // User Defaults
+    static let startDay = "startDay"
  }

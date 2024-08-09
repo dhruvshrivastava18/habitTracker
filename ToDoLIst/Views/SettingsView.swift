@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.colorScheme) var systemScheme
+    
+    @StateObject var colorScheme = ColorSchemea.shared
     
     @State private var selectedTheme = "System"
     @State private var selectedDay = "Saturday"
@@ -32,6 +35,16 @@ struct SettingsView: View {
                             }
                         }
                         .pickerStyle(.segmented)
+                        .onChange(of: selectedTheme, perform: { value in
+                            if selectedTheme == Constants.theme[1] {
+                                colorScheme.colorScheme = .light
+                            } else if selectedTheme == Constants.theme[0] {
+                                colorScheme.colorScheme = systemScheme
+                            } else {
+                                colorScheme.colorScheme = .dark
+                            }
+                        })
+                        
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Week Start On")
@@ -41,6 +54,9 @@ struct SettingsView: View {
                             }
                         }
                         .pickerStyle(.segmented)
+                        .onChange(of: selectedDay, perform: { value in
+                            UserDefaults.standard.setValue(selectedDay, forKey: Constants.startDay)
+                        })
                     }
                     
                     Toggle("Sounds", isOn: $sounds)
@@ -67,6 +83,9 @@ struct SettingsView: View {
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
         .tint(.green)
+        .onAppear(perform: {
+            selectedDay = UserDefaults.standard.string(forKey: Constants.startDay) ?? "Saturday"
+        })
     }
 }
 
