@@ -10,6 +10,7 @@ import ConfettiSwiftUI
 
 struct DailyListTrackerItem: View {
     
+    
     @Environment(\.modelContext) private var context
     
     @State var int = 0
@@ -25,7 +26,7 @@ struct DailyListTrackerItem: View {
                 HStack {
                     ZStack {
                         Rectangle()
-                            .foregroundColor(.purple)
+                            .foregroundColor(Constants.color[modal.paletteColor].opacity(0.6))
                             .frame(width: 40, height: 40)
                             .cornerRadius(12)
                         Constants.images[modal.image].image
@@ -48,11 +49,15 @@ struct DailyListTrackerItem: View {
                 VStack {
                     Button {
                         if int < modal.dailyTotal {
-                            
                             int = int + 1
-                        
+                            let today = getTodayDate()
+                            modal.data.updateValue(int, forKey: today)
+                            try? context.save()
                         } else {
                             int = 0
+                            let today = getTodayDate()
+                            modal.data.updateValue(int, forKey: today)
+                            try? context.save()
                         }
                     } label: {
                         if int == modal.dailyTotal {
@@ -84,12 +89,31 @@ struct DailyListTrackerItem: View {
             }
             .cornerRadius(12)
         }
-      
-        
+        .onAppear(perform: {
+            setupInitial()
+        })
     }
     
     private func updateItem(_ item: Modal) {
         item.name = "Updated Data"
+        try? context.save()
+    }
+    
+    func setupInitial() {
+        let today = getTodayDate()
+        if let value = modal.data[today] {
+            int = value
+        }
+        let dict = modal.data.sorted { $0.key < $1.key }
+        let sortedDict = Dictionary(uniqueKeysWithValues: dict)
+        print(modal.data)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        for (date, value) in dict {
+            print("\(dateFormatter.string(from: date)): \(value)")
+        }
+        print(sortedDict)
+        modal.data = sortedDict
         try? context.save()
     }
     

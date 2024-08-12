@@ -80,7 +80,7 @@ struct InfoView: View {
                             Text("\(0) Days")
                                 .fontWeight(.semibold)
                             
-                            Text("Current Streak")
+                            Text("Total Completed")
                                 .font(.caption2)
                         }
                         .padding(.leading)

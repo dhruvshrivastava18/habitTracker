@@ -14,6 +14,7 @@
 		7B24D2AB2C4C269E008DC16A /* OverAllListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */; };
 		7B24D2AE2C4D082D008DC16A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B24D2AD2C4D082D008DC16A /* InfoView.swift */; };
 		7B64231B2C46BA360046FB18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B64231A2C46BA360046FB18 /* Constants.swift */; };
+		7B779D3A2C67E85D005E9034 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B779D392C67E85D005E9034 /* Utils.swift */; };
 		7BA988072C482BEB006AE7CD /* DailyListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */; };
 		7BABD46A2C42867100B69EB8 /* ToDoLIstApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4692C42867100B69EB8 /* ToDoLIstApp.swift */; };
 		7BABD46C2C42867100B69EB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD46B2C42867100B69EB8 /* ContentView.swift */; };
@@ -50,6 +51,7 @@
 		7B24D2AA2C4C269E008DC16A /* OverAllListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllListTrackerItem.swift; sourceTree = "<group>"; };
 		7B24D2AD2C4D082D008DC16A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		7B64231A2C46BA360046FB18 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7B779D392C67E85D005E9034 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7BA988062C482BEB006AE7CD /* DailyListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyListTrackerItem.swift; sourceTree = "<group>"; };
 		7BABD4662C42867100B69EB8 /* ToDoLIst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoLIst.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BABD4692C42867100B69EB8 /* ToDoLIstApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoLIstApp.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				7B6423192C46BA230046FB18 /* Constants */,
 				7BABD4692C42867100B69EB8 /* ToDoLIstApp.swift */,
+				7B779D392C67E85D005E9034 /* Utils.swift */,
 				7BE178B22C4567CA00C38CC5 /* Extension */,
 				7B0A5DDF2C42F5AE00525BBD /* Views */,
 				7BABD46D2C42867200B69EB8 /* Assets.xcassets */,
@@ -337,6 +340,7 @@
 				7BC72CB42C4AC32E00E272A0 /* WeeklyListTrackerItem.swift in Sources */,
 				7B24D2AE2C4D082D008DC16A /* InfoView.swift in Sources */,
 				7B64231B2C46BA360046FB18 /* Constants.swift in Sources */,
+				7B779D3A2C67E85D005E9034 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

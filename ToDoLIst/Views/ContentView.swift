@@ -54,18 +54,6 @@ struct ContentView: View {
                     }
                 }
                 
-//                List {
-//                    ForEach(items) { item in
-//                        Text(item.name)
-//                            .foregroundStyle(.white)
-//                    }
-//                    .onDelete { indexes in
-//                        for index in indexes {
-//                            deleteItem(items[index])
-//                        }
-//                    }
-//                }
-                
             }
             .toolbar(content: {
                 ToolbarItem(placement: .topBarLeading) {
@@ -83,6 +71,8 @@ struct ContentView: View {
             })
         }
     }
+    
+    
   
     var TopTabView: some View {
         HStack(spacing: 16) {

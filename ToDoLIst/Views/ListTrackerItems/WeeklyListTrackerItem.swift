@@ -10,14 +10,8 @@ import SwiftUI
 struct WeeklyListTrackerItem: View {
     
     @State var int = 0
-    
-//    var image: Image
-//    var text: String
-//    var total: Int
-//    var color: Color
-//    var streak: Int
-//    var frequency: String
     var modal: Modal
+    @State var dateArray: [Date] = []
     
     var body: some View {
         VStack {
@@ -25,7 +19,7 @@ struct WeeklyListTrackerItem: View {
                 HStack {
                     ZStack {
                         Rectangle()
-                            .foregroundColor(.purple)
+                            .foregroundColor(Constants.color[modal.paletteColor].opacity(0.6))
                             .frame(width: 40, height: 40)
                             .cornerRadius(12)
                         Constants.images[modal.image].image
@@ -49,8 +43,10 @@ struct WeeklyListTrackerItem: View {
             }
 
             HStack(spacing: 2) {
-                ForEach(Constants.days, id: \.self) { day in
-                    WeeklyListItem(int: int, day: day, total: modal.dailyTotal, color: Constants.color[modal.paletteColor])
+                if dateArray.count == 7 {
+                    ForEach(0..<7) { index in
+                        WeeklyListItem(modal: modal, day: Constants.days[index], date: dateArray[index])
+                    }
                 }
             }
             .padding(.top)
@@ -62,40 +58,50 @@ struct WeeklyListTrackerItem: View {
                 .opacity(0.1)
         }
         .cornerRadius(12)
+        .onAppear(perform: {
+            self.dateArray = getDatesBasedOnStartStartDay(Constants.days[0])
+        })
     }
+    
+    
 }
 
 struct WeeklyListItem: View {
     
-    @State var int: Int
+    @Environment(\.modelContext) private var context
     
-    var day: String
-    var total: Int
-    var color: Color
+    @State var int: Int = 0
+    let modal: Modal
+    let day: String
+    let date: Date
     
     var body: some View {
         VStack {
             Text(day)
                 .font(.caption)
             Button {
-                if int < total {
+                if int < modal.dailyTotal {
                     int = int + 1
+                    modal.data.updateValue(int, forKey: date)
+                    try? context.save()
                 } else {
                     int = 0
+                    modal.data.updateValue(int, forKey: date)
+                    try? context.save()
                 }
             } label: {
-                if int == total {
+                if int == modal.dailyTotal  {
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .foregroundColor(color)
+                        .foregroundColor(Constants.color[modal.paletteColor])
                 } else {
                     ZStack {
                         Image(systemName: "circle")
                             .resizable()
                             .frame(width: 25, height: 25)
-                            .foregroundColor(color)
-                        Text("\(int)/\(total)")
+                            .foregroundColor(Constants.color[modal.paletteColor])
+                        Text("\(int)/\(modal.dailyTotal)")
                             .font(.system(size: 8, weight: .light))
                             .foregroundStyle(Constants.AppWhite)
                     }
@@ -104,8 +110,13 @@ struct WeeklyListItem: View {
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 10)
-        .background(color.opacity(0.2))
+        .background(Constants.color[modal.paletteColor].opacity(0.2))
         .cornerRadius(20)
+        .onAppear(perform: {
+            if let value = modal.data[date] {
+                int = value
+            }
+        })
     }
 }
 
