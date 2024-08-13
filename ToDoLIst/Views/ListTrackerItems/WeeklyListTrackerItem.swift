@@ -41,7 +41,7 @@ struct WeeklyListTrackerItem: View {
                 Text(modal.frequency)
                     .font(.caption)
             }
-
+            
             HStack(spacing: 2) {
                 if dateArray.count == 7 {
                     ForEach(0..<7) { index in

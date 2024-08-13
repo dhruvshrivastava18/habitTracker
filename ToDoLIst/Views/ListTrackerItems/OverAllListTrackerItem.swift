@@ -89,7 +89,6 @@ struct OverAllListTrackerItem: View {
             if let value = modal.data[today] {
                 int = value
             }
-            
             print(modal.data)
         })
     }
@@ -146,34 +145,3 @@ struct BoxView: View {
         }
     }
 }
-
-//struct ChartsCard: View {
-//    @State private var data: [Int] = (1...365).map { _ in Int.random(in: 0...15) }
-//    
-//    var body: some View {
-//        
-//        VStack(alignment: .leading, spacing: 0) {
-//            Text("Habit's Heat Map")
-//                .font(.system(size: 24, weight: .bold, design: .rounded))
-//                .foregroundStyle(.black.opacity(0.8))
-//                .padding(.horizontal)
-//            HeatmapView(data: data)
-//        }
-//        .frame(maxWidth: 400, alignment: .leading)
-//        .background(Color.white.opacity(0.3))
-//        .cornerRadius(10)
-//        .padding(1)
-//        .shadow(color: Color.gray.opacity(0.4), radius: 8, x: 0, y: 2)
-//        .onAppear {
-//            self.startRefreshing()
-//        }
-//    }
-//    
-//    private func startRefreshing() {
-//        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
-//            DispatchQueue.main.async {
-//                self.data = (1...365).map { _ in Int.random(in: 0...15) }
-//            }
-//        }
-//    }
-//}
