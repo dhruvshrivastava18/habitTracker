@@ -13,6 +13,8 @@ struct OverAllListTrackerItem: View {
     
     let modal: Modal
     
+    @State var heatMapData: [Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
     var body: some View {
         VStack {
             HStack {
@@ -44,12 +46,12 @@ struct OverAllListTrackerItem: View {
                             int = int + 1
                             let today = getTodayDate()
                             modal.data.updateValue(int, forKey: today)
-                            try? context.save()
+                            setupInitial()
                         } else {
                             int = 0
                             let today = getTodayDate()
                             modal.data.updateValue(int, forKey: today)
-                            try? context.save()
+                            setupInitial()
                         }
                     } label: {
                         if int == modal.dailyTotal {
@@ -73,7 +75,7 @@ struct OverAllListTrackerItem: View {
                 .frame(minHeight: 60)
             }
          
-            HeatmapView(data: convertDictionaryToYearlyArray(modal.data), color: Constants.color[modal.paletteColor])
+            HeatmapView(data: $heatMapData, color: Constants.color[modal.paletteColor])
                 .padding(.vertical, -4)
                 
         }
@@ -90,7 +92,28 @@ struct OverAllListTrackerItem: View {
                 int = value
             }
             print(modal.data)
+            self.heatMapData = convertDictionaryToYearlyArray(modal.data)
         })
+    }
+    
+    func setupInitial() {
+        let today = getTodayDate()
+        if let value = modal.data[today] {
+            int = value
+        }
+        let dict = modal.data.sorted { $0.key < $1.key }
+        let sortedDict = Dictionary(uniqueKeysWithValues: dict)
+        
+        for (key, value) in dict {
+            print("Date \(key.formatted()) value \(value)")
+        }
+        print(modal.data.keys.sorted())
+        modal.data = sortedDict
+        let streak = findCurrentStreak(modal.data, dailyTotal: modal.dailyTotal)
+        modal.streak = streak
+        print(streak)
+
+        try? context.save()
     }
 }
 
@@ -100,7 +123,7 @@ struct OverAllListTrackerItem: View {
 
 
 struct HeatmapView: View {
-    @State var data: [Int]
+    @Binding var data: [Int]
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     let daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     let color: Color

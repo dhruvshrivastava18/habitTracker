@@ -53,13 +53,11 @@ struct DailyListTrackerItem: View {
                             let today = getTodayDate()
                             modal.data.updateValue(int, forKey: today)
                             setupInitial()
-//                            try? context.save()
                         } else {
                             int = 0
                             let today = getTodayDate()
                             modal.data.updateValue(int, forKey: today)
                             setupInitial()
-//                            try? context.save()
                         }
                     } label: {
                         if int == modal.dailyTotal {

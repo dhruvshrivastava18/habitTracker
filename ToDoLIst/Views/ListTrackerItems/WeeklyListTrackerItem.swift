@@ -10,7 +10,7 @@ import SwiftUI
 struct WeeklyListTrackerItem: View {
     
     @State var int = 0
-    var modal: Modal
+    @State var modal: Modal
     @State var dateArray: [Date] = []
     
     var body: some View {
@@ -45,7 +45,7 @@ struct WeeklyListTrackerItem: View {
             HStack(spacing: 2) {
                 if dateArray.count == 7 {
                     ForEach(0..<7) { index in
-                        WeeklyListItem(modal: modal, day: Constants.days[index], date: dateArray[index])
+                        WeeklyListItem(modal: $modal, day: Constants.days[index], date: dateArray[index])
                     }
                 }
             }
@@ -71,7 +71,7 @@ struct WeeklyListItem: View {
     @Environment(\.modelContext) private var context
     
     @State var int: Int = 0
-    let modal: Modal
+    @Binding var modal: Modal
     let day: String
     let date: Date
     
@@ -84,10 +84,14 @@ struct WeeklyListItem: View {
                     if int < modal.dailyTotal {
                         int = int + 1
                         modal.data.updateValue(int, forKey: date)
+                        let streak = findCurrentStreak(modal.data, dailyTotal: modal.dailyTotal)
+                        modal.streak = streak
                         try? context.save()
                     } else {
                         int = 0
                         modal.data.updateValue(int, forKey: date)
+                        let streak = findCurrentStreak(modal.data, dailyTotal: modal.dailyTotal)
+                        modal.streak = streak
                         try? context.save()
                     }
                 }
@@ -98,7 +102,6 @@ struct WeeklyListItem: View {
                         .frame(width: 25, height: 25)
                         .foregroundColor(Constants.color[modal.paletteColor])
                 } else {
-                    
                     ZStack {
                         Image(systemName: "circle")
                             .resizable()
@@ -123,6 +126,27 @@ struct WeeklyListItem: View {
             }
         })
     }
+    
+    func setupInitial() {
+        let today = getTodayDate()
+        if let value = modal.data[today] {
+            int = value
+        }
+        let dict = modal.data.sorted { $0.key < $1.key }
+        let sortedDict = Dictionary(uniqueKeysWithValues: dict)
+        
+        for (key, value) in dict {
+            print("Date \(key.formatted()) value \(value)")
+        }
+        print(modal.data.keys.sorted())
+        modal.data = sortedDict
+        let streak = findCurrentStreak(modal.data, dailyTotal: modal.dailyTotal)
+        modal.streak = streak
+        print(streak)
+
+        try? context.save()
+    }
+    
 }
 
 //#Preview {
