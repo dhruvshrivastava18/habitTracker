@@ -35,7 +35,7 @@ struct SettingsView: View {
                             }
                         }
                         .pickerStyle(.segmented)
-                        .onChange(of: selectedTheme, perform: { value in
+                        .onChange(of: selectedTheme) { oldValue, newValue in
                             if selectedTheme == Constants.theme[1] {
                                 colorScheme.colorScheme = .light
                                 colorScheme.setScheme(scheme: Constants.lightScheme)
@@ -46,7 +46,7 @@ struct SettingsView: View {
                                 colorScheme.colorScheme = .dark
                                 colorScheme.setScheme(scheme: Constants.darkScheme)
                             }
-                        })
+                        }
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Week Start On")
@@ -56,9 +56,9 @@ struct SettingsView: View {
                             }
                         }
                         .pickerStyle(.segmented)
-                        .onChange(of: selectedDay, perform: { value in
+                        .onChange(of: selectedDay) { oldValue, newValue in
                             UserDefaults.standard.setValue(selectedDay, forKey: Constants.startDay)
-                        })
+                        }
                     }
                     
 //                    Toggle("Sounds", isOn: $sounds)
