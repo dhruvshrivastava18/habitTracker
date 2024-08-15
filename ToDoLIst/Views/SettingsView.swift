@@ -38,13 +38,15 @@ struct SettingsView: View {
                         .onChange(of: selectedTheme, perform: { value in
                             if selectedTheme == Constants.theme[1] {
                                 colorScheme.colorScheme = .light
+                                colorScheme.setScheme(scheme: Constants.lightScheme)
                             } else if selectedTheme == Constants.theme[0] {
                                 colorScheme.colorScheme = systemScheme
+                                colorScheme.setScheme(scheme: Constants.systemScheme)
                             } else {
                                 colorScheme.colorScheme = .dark
+                                colorScheme.setScheme(scheme: Constants.darkScheme)
                             }
                         })
-                        
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Week Start On")
@@ -59,8 +61,8 @@ struct SettingsView: View {
                         })
                     }
                     
-                    Toggle("Sounds", isOn: $sounds)
-                        .padding(.trailing, 4)
+//                    Toggle("Sounds", isOn: $sounds)
+//                        .padding(.trailing, 4)
                     
                     Toggle("Show Current Streak", isOn: $showCurrentStreak)
                         .padding(.trailing, 4)
@@ -85,6 +87,16 @@ struct SettingsView: View {
         .tint(.green)
         .onAppear(perform: {
             selectedDay = UserDefaults.standard.string(forKey: Constants.startDay) ?? "Saturday"
+            
+            if let scheme = UserDefaults.standard.string(forKey: Constants.scheme) {
+                if scheme == Constants.lightScheme {
+                    self.selectedTheme = Constants.theme[1]
+                } else if scheme == Constants.darkScheme {
+                    self.selectedTheme = Constants.theme[2]
+                } else {
+                    self.selectedTheme = Constants.theme[0]
+                }
+            }
         })
     }
 }
