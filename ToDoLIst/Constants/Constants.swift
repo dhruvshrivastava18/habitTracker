@@ -73,4 +73,5 @@ struct Constants {
     
     // User Defaults
     static let startDay = "startDay"
+    static let scheme = "colorScheme"
  }

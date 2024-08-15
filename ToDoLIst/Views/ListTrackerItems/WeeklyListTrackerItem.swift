@@ -80,14 +80,16 @@ struct WeeklyListItem: View {
             Text(day)
                 .font(.caption)
             Button {
-                if int < modal.dailyTotal {
-                    int = int + 1
-                    modal.data.updateValue(int, forKey: date)
-                    try? context.save()
-                } else {
-                    int = 0
-                    modal.data.updateValue(int, forKey: date)
-                    try? context.save()
+                if !(date > getTodayDate()) {
+                    if int < modal.dailyTotal {
+                        int = int + 1
+                        modal.data.updateValue(int, forKey: date)
+                        try? context.save()
+                    } else {
+                        int = 0
+                        modal.data.updateValue(int, forKey: date)
+                        try? context.save()
+                    }
                 }
             } label: {
                 if int == modal.dailyTotal  {
@@ -96,21 +98,24 @@ struct WeeklyListItem: View {
                         .frame(width: 25, height: 25)
                         .foregroundColor(Constants.color[modal.paletteColor])
                 } else {
+                    
                     ZStack {
                         Image(systemName: "circle")
                             .resizable()
                             .frame(width: 25, height: 25)
                             .foregroundColor(Constants.color[modal.paletteColor])
-                        Text("\(int)/\(modal.dailyTotal)")
-                            .font(.system(size: 8, weight: .light))
-                            .foregroundStyle(Constants.AppWhite)
+                        if !(date > getTodayDate()) {
+                            Text("\(int)/\(modal.dailyTotal)")
+                                .font(.system(size: 8, weight: .light))
+                                .foregroundStyle(Constants.AppWhite)
+                        }
                     }
                 }
             }
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 10)
-        .background(Constants.color[modal.paletteColor].opacity(0.2))
+        .background(date == getTodayDate() ? Constants.color[modal.paletteColor].opacity(0.2) : Color.clear)
         .cornerRadius(20)
         .onAppear(perform: {
             if let value = modal.data[date] {

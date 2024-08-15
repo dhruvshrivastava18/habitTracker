@@ -113,6 +113,12 @@ struct HeatmapView: View {
                             let index = row * 7 + col
                             let count = self.data[index]
                             BoxView(count: count, color: color)
+                                .onAppear {
+                                    if count != 0 {
+                                        print(count)
+                                        print(data.count)
+                                    }
+                                }
                         }
                     }
                 }

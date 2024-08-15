@@ -12,7 +12,7 @@ struct InfoView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     
-    @State private var selectedDate: Date = Date()
+    @State private var selectedDate: Date = Date()    
     let modal: Modal
     
     var body: some View {
@@ -54,7 +54,7 @@ struct InfoView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(Color(hex: "7fdb7c"))
                             
-                            Text("\(0) Days")
+                            Text("\(findLongestStreak(modal.data, dailyTotal: modal.dailyTotal)) Days")
                                 .fontWeight(.semibold)
                             
                             Text("Longest Streak")
@@ -77,7 +77,7 @@ struct InfoView: View {
                             Image(systemName: "checkmark")
                                 .foregroundColor(Color(hex: "7fdb7c"))
                             
-                            Text("\(0) Days")
+                            Text("\(findTotalDaysCompleted(modal.data, dailyTotal: modal.dailyTotal)) Days")
                                 .fontWeight(.semibold)
                             
                             Text("Total Completed")

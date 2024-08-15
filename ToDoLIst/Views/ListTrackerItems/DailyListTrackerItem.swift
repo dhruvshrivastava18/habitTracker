@@ -52,12 +52,14 @@ struct DailyListTrackerItem: View {
                             int = int + 1
                             let today = getTodayDate()
                             modal.data.updateValue(int, forKey: today)
-                            try? context.save()
+                            setupInitial()
+//                            try? context.save()
                         } else {
                             int = 0
                             let today = getTodayDate()
                             modal.data.updateValue(int, forKey: today)
-                            try? context.save()
+                            setupInitial()
+//                            try? context.save()
                         }
                     } label: {
                         if int == modal.dailyTotal {
@@ -106,18 +108,22 @@ struct DailyListTrackerItem: View {
         }
         let dict = modal.data.sorted { $0.key < $1.key }
         let sortedDict = Dictionary(uniqueKeysWithValues: dict)
-        print(modal.data)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        for (date, value) in dict {
-            print("\(dateFormatter.string(from: date)): \(value)")
+        
+        for (key, value) in dict {
+            print("Date \(key.formatted()) value \(value)")
         }
-        print(sortedDict)
+        print(modal.data.keys.sorted())
         modal.data = sortedDict
+        let streak = findCurrentStreak(modal.data, dailyTotal: modal.dailyTotal)
+        modal.streak = streak
+        print(streak)
+
         try? context.save()
     }
     
 }
+
+
 
 //#Preview {
 //    DailyListTrackerItem(image: Image(.dumbell), text: "Leetcode", total: 2, color: Color(hex: "9677b3"), streak: 3)
