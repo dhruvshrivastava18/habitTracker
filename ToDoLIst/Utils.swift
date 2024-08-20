@@ -9,22 +9,22 @@ import Foundation
 
 func convertDictionaryToYearlyArray(_ dictionary: [Date: Int]) -> [Int] {
     let calendar = Calendar.current
-    if let today = dictionary.keys.max() {
-        let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: today)!
-        
-        var result = Array(repeating: 0, count: 364)
-        
-        for i in 0..<363 {
-            let date = calendar.date(byAdding: .day, value: -i, to: today)!
-            if date >= oneYearAgo {
-                if let value = dictionary.first(where: { calendar.isDate($0.key, inSameDayAs: date) })?.value {
-                    result[363 - i] = value
-                }
-            }
-        }
-        print(result)
-        return result
-    } else {
+//    if let today = dictionary.keys.max() {
+//        let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: today)!
+//        
+//        var result = Array(repeating: 0, count: 364)
+//        
+//        for i in 0..<363 {
+//            let date = calendar.date(byAdding: .day, value: -i, to: today)!
+//            if date >= oneYearAgo {
+//                if let value = dictionary.first(where: { calendar.isDate($0.key, inSameDayAs: date) })?.value {
+//                    result[363 - i] = value
+//                }
+//            }
+//        }
+//        print(result)
+//        return result
+//    } else {
         let today = calendar.startOfDay(for: Date())
         let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: today)!
         
@@ -40,7 +40,7 @@ func convertDictionaryToYearlyArray(_ dictionary: [Date: Int]) -> [Int] {
         }
         
         return result
-    }
+//    }
 }
 
 func getTodayDate() -> Date {

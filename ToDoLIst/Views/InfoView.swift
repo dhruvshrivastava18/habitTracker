@@ -10,10 +10,16 @@ import SwiftUI
 struct InfoView: View {
     
     @Environment(\.modelContext) private var context
+    
     @Environment(\.dismiss) private var dismiss
     
-    @State private var selectedDate: Date = Date()    
+    @State private var currentDate: Date = Date()
+    
+    @State private var currentMonth = 0
     let modal: Modal
+    
+    let days: [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
     var body: some View {
         NavigationView {
@@ -25,6 +31,8 @@ struct InfoView: View {
                 Text(modal.name)
                     .fontWeight(.semibold)
                     .padding(.top)
+                
+                CalenderView
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
@@ -130,12 +138,120 @@ struct InfoView: View {
         }
     }
     
+    var CalenderView: some View {
+        VStack(spacing: 35) {
+            
+            HStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(extraDateData()[0])
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                    
+                    Text(extraDateData()[1])
+                        .font(.title.bold())
+                }
+                
+                Spacer(minLength: 0)
+                
+                Button {
+                    withAnimation {
+                        currentMonth -= 1
+                    }
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.title2)
+                }
+                
+                Button {
+                    currentMonth += 1
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .font(.title2)
+                }
+            }
+            .padding(.horizontal)
+            
+            HStack(spacing: 0) {
+                ForEach(days, id: \.self) { day in
+                    
+                    Text(day)
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            
+            HStack(spacing: 0) {
+                LazyVGrid(columns: columns, spacing: 15) {
+                    ForEach(extractDate()) { value in
+                        CardView(value: value)
+                    }
+                }
+            }
+        }
+        .onChange(of: currentMonth) { oldValue, newValue in
+            currentDate = getCurrentMonth()
+        }
+    }
+    
+    @ViewBuilder
+    func CardView(value: DateValue) -> some View {
+        VStack {
+            if value.day != -1 {
+                Text("\(value.day)")
+            }
+        }
+    }
+    
     private func deleteItem(_ item: Modal) {
         context.delete(item)
+    }
+    
+    private func extractDate() -> [DateValue] {
+        let calender = Calendar.current
+
+        let currentMonth = getCurrentMonth()
+        
+        var days = currentMonth.getAllDates().compactMap { date -> DateValue in
+            let day = calender.component(.day, from: date)
+            
+            return DateValue(day: day, date: date)
+        }
+        
+        let firstWeekDay = calender.component(.weekday, from: days.first?.date ?? Date())
+        
+        for _ in 0..<firstWeekDay - 1 {
+            days.insert(DateValue(day: -1, date: Date()), at: 0)
+        }
+        
+        return days
+        
+    }
+    
+    private func getCurrentMonth() -> Date {
+        let calender = Calendar.current
+        
+        guard let currentMonth = calender.date(byAdding: .month, value: self.currentMonth, to: Date())
+        else {
+            return Date()
+        }
+        
+        return currentMonth
+    }
+    
+    private func extraDateData() -> [String] {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "YYYY MMMM"
+        
+        let date = formatter.string(from: currentDate)
+        
+        return date.components(separatedBy: " ")
     }
     
 }
 
 #Preview {
-    InfoView(modal: Modal(name: "Test", color: 3, image: 0, dailyTotal: 2, streak: 3, frequency: "", dailyData: [:]))
+    InfoView(modal: Modal.init(name: "sdf", color: 2, image: 2, dailyTotal: 1, streak: 2, frequency: "ewf", dailyData: [:]))
 }
+

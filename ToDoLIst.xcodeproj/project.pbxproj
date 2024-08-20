@@ -24,6 +24,7 @@
 		7BABD4862C42867300B69EB8 /* ToDoLIstUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4852C42867300B69EB8 /* ToDoLIstUITests.swift */; };
 		7BABD4882C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABD4872C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift */; };
 		7BC72CB42C4AC32E00E272A0 /* WeeklyListTrackerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC72CB32C4AC32E00E272A0 /* WeeklyListTrackerItem.swift */; };
+		7BCDEFAE2C71F0B400AA957B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCDEFAD2C71F0B400AA957B /* DateValue.swift */; };
 		7BE178B42C4567FF00C38CC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE178B32C4567FF00C38CC5 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		7BABD4852C42867300B69EB8 /* ToDoLIstUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoLIstUITests.swift; sourceTree = "<group>"; };
 		7BABD4872C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoLIstUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7BC72CB32C4AC32E00E272A0 /* WeeklyListTrackerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyListTrackerItem.swift; sourceTree = "<group>"; };
+		7BCDEFAD2C71F0B400AA957B /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		7BE178B32C4567FF00C38CC5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,7 +157,7 @@
 				7BABD46D2C42867200B69EB8 /* Assets.xcassets */,
 				7BABD46F2C42867200B69EB8 /* ToDoLIst.entitlements */,
 				7BABD4702C42867200B69EB8 /* Preview Content */,
-				7B12BE2E2C4EC1A200BA8E09 /* Modal.swift */,
+				7BCDEFAC2C71F09D00AA957B /* Modal */,
 			);
 			path = ToDoLIst;
 			sourceTree = "<group>";
@@ -183,6 +185,15 @@
 				7BABD4872C42867300B69EB8 /* ToDoLIstUITestsLaunchTests.swift */,
 			);
 			path = ToDoLIstUITests;
+			sourceTree = "<group>";
+		};
+		7BCDEFAC2C71F09D00AA957B /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				7B12BE2E2C4EC1A200BA8E09 /* Modal.swift */,
+				7BCDEFAD2C71F0B400AA957B /* DateValue.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		7BE178B22C4567CA00C38CC5 /* Extension */ = {
@@ -334,6 +345,7 @@
 				7B0A5DDE2C42F0AE00525BBD /* SettingsView.swift in Sources */,
 				7BABD46C2C42867100B69EB8 /* ContentView.swift in Sources */,
 				7B24D2AB2C4C269E008DC16A /* OverAllListTrackerItem.swift in Sources */,
+				7BCDEFAE2C71F0B400AA957B /* DateValue.swift in Sources */,
 				7B0A5DE12C43E0EF00525BBD /* NewHabitView.swift in Sources */,
 				7BABD46A2C42867100B69EB8 /* ToDoLIstApp.swift in Sources */,
 				7BA988072C482BEB006AE7CD /* DailyListTrackerItem.swift in Sources */,
