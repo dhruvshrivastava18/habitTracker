@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.colorScheme) var systemScheme
+    @Environment(\.dismiss) var dismiss
     
     @StateObject var colorScheme = ColorSchemea.shared
     
@@ -98,6 +99,16 @@ struct SettingsView: View {
                 }
             }
         })
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(Constants.AppGreen)
+                }
+            }
+        }
     }
 }
 

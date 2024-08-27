@@ -24,7 +24,9 @@ struct ContentView: View {
                 ScrollView {
                     if selection == Constants.tabs[0] {
                         ForEach(items) { item in
-                            DailyListTrackerItem(modal: item)
+                            if checkIfToShowToday(modal: item) {
+                                DailyListTrackerItem(modal: item)
+                            }
                         }
                     } else if selection == Constants.tabs[1] {
                         ForEach(items) { item in
@@ -59,7 +61,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationLink {
                         SettingsView()
-                            .tint(.green)
+                            .navigationBarBackButtonHidden()
                     } label: {
                         Image(.bars)
                             .renderingMode(.template)
@@ -101,6 +103,33 @@ struct ContentView: View {
             Spacer()
         }
         .padding([.leading, .top])
+    }
+    
+    func checkIfToShowToday(modal: Modal) -> Bool {
+        let today = getTodayDate()
+
+        print(modal.frequency)
+        // Get the current calendar
+        let calendar = Calendar.current
+
+        // Extract the components (year, month, day, weekday) from today's date
+        let components = calendar.dateComponents([.year, .month, .day, .weekday], from: today)
+
+        // Format the date to a readable string
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        // Extract the weekday name
+        dateFormatter.dateFormat = "EEEE"
+        let dayOfWeek = dateFormatter.string(from: today)
+
+        if let year = components.year, let month = components.month, let day = components.day {
+            if modal.frequency.contains("\(day)") || modal.frequency.contains("\(dayOfWeek.prefix(2))") || modal.frequency == "Everyday" {
+                return true
+            }
+        }
+        
+        return false
     }
     
 //    private func addItem() {

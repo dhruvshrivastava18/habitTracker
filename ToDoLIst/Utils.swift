@@ -9,22 +9,6 @@ import Foundation
 
 func convertDictionaryToYearlyArray(_ dictionary: [Date: Int]) -> [Int] {
     let calendar = Calendar.current
-//    if let today = dictionary.keys.max() {
-//        let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: today)!
-//        
-//        var result = Array(repeating: 0, count: 364)
-//        
-//        for i in 0..<363 {
-//            let date = calendar.date(byAdding: .day, value: -i, to: today)!
-//            if date >= oneYearAgo {
-//                if let value = dictionary.first(where: { calendar.isDate($0.key, inSameDayAs: date) })?.value {
-//                    result[363 - i] = value
-//                }
-//            }
-//        }
-//        print(result)
-//        return result
-//    } else {
         let today = calendar.startOfDay(for: Date())
         let oneYearAgo = calendar.date(byAdding: .year, value: -1, to: today)!
         
@@ -95,22 +79,26 @@ func findLongestStreak(_ dict: [Date: Int], dailyTotal: Int) -> Int {
     var longestSequence = 1
     var currentSequence = 1
 
-    for i in 1..<sortedDates.count {
-        let previousDate = sortedDates[i - 1]
-        let currentDate = sortedDates[i]
-        
-        // Check if the current date is the next day of the previous date
-        let difference = Calendar.current.dateComponents([.day], from: previousDate, to: currentDate).day ?? 0
-        
-        if (difference == 1) && (dict[previousDate] == dailyTotal) && (dict[currentDate] == dailyTotal) {
-            currentSequence += 1
-            longestSequence = max(longestSequence, currentSequence)
-        } else {
-            currentSequence = 1
+    if !sortedDates.isEmpty {
+        for i in 1..<sortedDates.count {
+            let previousDate = sortedDates[i - 1]
+            let currentDate = sortedDates[i]
+            
+            // Check if the current date is the next day of the previous date
+            let difference = Calendar.current.dateComponents([.day], from: previousDate, to: currentDate).day ?? 0
+            
+            if (difference == 1) && (dict[previousDate] == dailyTotal) && (dict[currentDate] == dailyTotal) {
+                currentSequence += 1
+                longestSequence = max(longestSequence, currentSequence)
+            } else {
+                currentSequence = 1
+            }
         }
+        
+        return longestSequence
+    } else {
+        return 0
     }
-    
-    return longestSequence
 }
 
 func findTotalDaysCompleted(_ dict: [Date: Int], dailyTotal: Int) -> Int {

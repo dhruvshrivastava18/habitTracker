@@ -33,7 +33,12 @@ struct InfoView: View {
                     .padding(.top)
                 
                 CalenderView
-                
+                    .padding()
+            
+                    .background(Constants.grayBackground)
+                    .cornerRadius(30)
+                    .padding(.horizontal)
+                    
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
                         Image(systemName: "flame")
@@ -152,54 +157,48 @@ struct InfoView: View {
                 }
                 
                 Spacer(minLength: 0)
-                
+
                 Button {
                     withAnimation {
-                        currentMonth -= 1
+                        if abs(currentMonth) < 12 {
+                            currentMonth -= 1
+                        }
                     }
                 } label: {
                     Image(systemName: "chevron.left")
                         .font(.title2)
                 }
-                
                 Button {
-                    currentMonth += 1
+                    if (abs(currentMonth) < 13) {
+                        currentMonth += 1
+                    }
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.title2)
                 }
+                .disabled(currentMonth == 0)
             }
             .padding(.horizontal)
-            
+                
             HStack(spacing: 0) {
                 ForEach(days, id: \.self) { day in
-                    
                     Text(day)
-                        .font(.callout)
+                        .font(.footnote)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                 }
             }
             
             HStack(spacing: 0) {
-                LazyVGrid(columns: columns, spacing: 15) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(extractDate()) { value in
-                        CardView(value: value)
+                        CardView(modal: modal, value: value)
                     }
                 }
             }
         }
         .onChange(of: currentMonth) { oldValue, newValue in
             currentDate = getCurrentMonth()
-        }
-    }
-    
-    @ViewBuilder
-    func CardView(value: DateValue) -> some View {
-        VStack {
-            if value.day != -1 {
-                Text("\(value.day)")
-            }
         }
     }
     
@@ -248,7 +247,70 @@ struct InfoView: View {
         
         return date.components(separatedBy: " ")
     }
+}
+
+struct CardView: View {
+    @Environment(\.modelContext) private var context
     
+    @State var int = 0
+    
+    let modal: Modal
+    var value: DateValue
+    var body: some View {
+        VStack {
+            if value.day != -1 {
+                ZStack {
+                    Circle()
+                        .fill(.clear)
+                        .strokeBorder(value.date == getTodayDate() ? .green : .clear, lineWidth: 1)
+                        .frame(width: 30, height: 30)
+                        .overlay(alignment: .bottom) {
+                            if let value = modal.data[value.date] {
+                                if int != 0 {
+                                    HStack(spacing: 2) {
+                                        Circle()
+                                            .frame(width: 4)
+                                            .foregroundColor(.green)
+                                        Text("\(int)")
+                                            .font(.system(size: 8))
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding(.horizontal, 4)
+                                    .background(Color(hex: "093312"))
+                                    .cornerRadius(4)
+                                    .padding(.bottom, -4)
+                                }
+                            }
+                        }
+                    VStack(spacing: 4) {
+                        Button {
+                            if int < modal.dailyTotal {
+                                int = int + 1
+                                let today = getTodayDate()
+                                modal.data.updateValue(int, forKey: value.date)
+                                try? context.save()
+                            } else {
+                                int = 0
+                                let today = getTodayDate()
+                                modal.data.updateValue(int, forKey: value.date)
+                                try? context.save()
+                            }
+                        } label: {
+                            Text("\(value.day)")
+                                .font(.caption)
+                                .foregroundStyle(value.date > getTodayDate() ? .gray : Constants.AppWhite)
+                        }
+                        .disabled(value.date > getTodayDate())
+                    }
+                }
+            }
+        }
+        .onAppear {
+            if let data = modal.data[value.date] {
+                int = data
+            }
+        }
+    }
 }
 
 #Preview {

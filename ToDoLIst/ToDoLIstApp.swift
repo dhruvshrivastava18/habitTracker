@@ -26,20 +26,16 @@ struct ToDoLIstApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onAppear(perform: {
-                    colorScheme.colorScheme = systemScheme
-                })
-                .preferredColorScheme(colorScheme.colorScheme)
-        }
-        .modelContainer(modelContainer)
-        .onChange(of: systemScheme) { oldValue, newValue in
             if let scheme = UserDefaults.standard.object(forKey: Constants.scheme) as? String {
-                if scheme == Constants.systemScheme {
-                    colorScheme.colorScheme = systemScheme
-                }
+                
+                ContentView()
+                    .preferredColorScheme(scheme != Constants.systemScheme ? colorScheme.colorScheme : nil)
+                
+            } else {
+                ContentView()
             }
         }
+        .modelContainer(modelContainer)
     }
 }
 

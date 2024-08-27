@@ -21,7 +21,7 @@ struct NewHabitView: View {
     @State private var selectedFrequency = "Daily"
     @State var habitName = ""
     @State var reminder = false 
-    @State var int = 0
+    @State var int = 1
     @State var selectedDays: [String] = []
     @State var selectedDates: [String] = []
     
@@ -55,7 +55,7 @@ struct NewHabitView: View {
                         
                         // Frequency Selector
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Theme")
+                            Text("Repeat")
                             Picker("Please choose a color", selection: $selectedFrequency) {
                                 ForEach(Constants.frequency, id: \.self) {
                                     Text($0)
@@ -133,7 +133,7 @@ struct NewHabitView: View {
                             Spacer()
                             HStack {
                                 Button {
-                                    if int > 0 {
+                                    if int > 1 {
                                         int = int - 1
                                     }
                                 } label: {
@@ -181,16 +181,7 @@ struct NewHabitView: View {
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-//                        modal = Modal(name: habitName, color: getColorInt(), image: getImageInt(), dailyTotal: int, streak: 0, frequency: "", dailyData: [:])
-                        modal.name = habitName
-                        modal.paletteColor = getColorInt()
-                        modal.image = getImageInt()
-                        modal.dailyTotal = int
-                        if isEdit {
-                            try? context.save()
-                        } else {
-                            context.insert(modal)
-                        }
+                        setupModal()
                         dismiss()
                     } label: {
                         Text("Save")
@@ -204,7 +195,7 @@ struct NewHabitView: View {
                         dismiss()
                     } label: {
                         Image(systemName: "chevron.left")
-                            .foregroundColor(Constants.AppWhite)
+                            .foregroundColor(Constants.AppGreen)
                     }
                 }
             })
@@ -223,6 +214,27 @@ struct NewHabitView: View {
             .navigationBarTitleDisplayMode(.inline)
             .padding(.horizontal, 16)
 //        }
+    }
+    
+    private func setupModal() {
+        modal.name = habitName
+        modal.paletteColor = getColorInt()
+        modal.image = getImageInt()
+        modal.dailyTotal = int
+        if selectedFrequency != Constants.frequency[2] {
+            if selectedDays.count != 7 {
+                modal.frequency = selectedDays.joined(separator: ", ")
+            } else {
+                modal.frequency = "Everyday"
+            }
+        } else {
+            modal.frequency = selectedDates.joined(separator: ", ")
+        }
+        if isEdit {
+            try? context.save()
+        } else {
+            context.insert(modal)
+        }
     }
     
     private func getColorInt() -> Int {
@@ -281,7 +293,6 @@ struct NewHabitView: View {
                                 .font(.caption)
                                 .hidden()
                         }
-                        
                     }
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 30, maximum: 50)), count: 7), content: {
                         ForEach(1...31, id: \.self) { date in
